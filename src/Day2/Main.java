@@ -27,10 +27,10 @@ public class Main {
             readers[i] = LibraryManagement.inputReaders(i + 1);
         }
 
-//        System.out.println("book list");
-//        for(int i = 0; i < n; i++){
-//            System.out.println(books[i]);
-//        }
+        System.out.println("book list");
+        for(int i = 0; i < n; i++){
+            System.out.println(books[i]);
+        }
         System.out.println("reader list");
         for(int i = 0; i < m; i++){
             System.out.println(readers[i]);
@@ -39,8 +39,8 @@ public class Main {
         LibraryManagement libraryManagement = new LibraryManagement(readers, books);
         libraryManagement.borrowBooks();
         libraryManagement.displayBorrowRecords();
-//        libraryManagement.sortReaderByName();
-        libraryManagement.sortByBorrowedBookCounts();
-
+        libraryManagement.sortReaderByName();
+//        libraryManagement.sortByBorrowedBookCounts();
+//        libraryManagement.findBorrowRecordsByReaderName("abc");
     }
 }

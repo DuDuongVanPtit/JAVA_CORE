@@ -128,7 +128,6 @@ public class LibraryManagement {
                     System.out.println(" - " + book.getName() + " (" + book.getAuthor() + ")" + " x " + c[j]);
                 }
             }
-
             System.out.println("--------------------");
         }
     }

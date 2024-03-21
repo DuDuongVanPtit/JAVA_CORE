@@ -1,4 +1,4 @@
-package Day2;
+package Day2.model;
 
 public class Reader {
     private String readerId, name, address, phoneNumber, readerType;

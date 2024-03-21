@@ -1,5 +1,9 @@
 package Day2;
 
+import Day2.model.Book;
+import Day2.model.Reader;
+import Day2.service.LibraryManagement;
+
 import java.util.Scanner;
 
 public class Main {

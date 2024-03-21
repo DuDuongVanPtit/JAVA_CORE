@@ -1,8 +1,5 @@
 package Day3;
 
-import Day2.Book;
-
-import java.util.Map;
 import java.util.Scanner;
 
 public class TeachingManagement {

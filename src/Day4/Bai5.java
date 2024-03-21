@@ -13,6 +13,7 @@ public class Bai5 {
         }
         return result.toString().trim();
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(convertName(scanner.nextLine()));

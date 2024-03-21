@@ -12,6 +12,7 @@ public class Bai3 {
         }
         return result.toString().trim();
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println(standardization(scanner.nextLine()));

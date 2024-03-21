@@ -8,6 +8,7 @@ public class Bai1 {
         if(s.equals(reversed.reverse().toString())) return true;
         return false;
     }
+
     public static void main(String[] args) {
         for(int i = 100000; i < 1000000; i++){
             if(check(i + "")){

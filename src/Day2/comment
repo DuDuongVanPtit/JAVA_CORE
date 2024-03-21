@@ -1,0 +1,13 @@
+Bài2:
+Main.java
+    - sử dụng switch-case để thực hiện 5 yêu cầu lớn
+    - và trong mỗi yêu cầu lớn nếu có yêu cầu nhỏ sử dụng switch-case tiếp
+
+    - Ý 1 và 2 đang lồng chéo vào nhau (tác riêng ra vì đây là 2 ý)
+    - Ý 1 Chuyên nghành chọn 1 trong các option (Khoa học tự nhiên, Văn học – Nghệ thuật, Điện tử Viễn thông, Công nghệ thông tin.) không nhập tay.
+
+    - Ý 2 Loại bạn đọc chọn 1 trong cáv option (sinh viên, học viên cao học hoặc giáo viên.)
+
+    - ý 3
+    + Nhập số lượng sách muốn mượn (không lớn hơn 5)
+    + Khi mượn sách không được mượn quá 3 quyển trong 1 loại

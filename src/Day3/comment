@@ -1,0 +1,16 @@
+Bài 3
+    - Dùng Switch-case
+    - Tách các ý rõ ràng ra
+    - Dùng đồng nhất TA hoặc TViệt
+
+    - Model chưa thấy sử dụng kế thừa
+
+    - Các ý cần sắp xếp đúng thứ tự
+
+    - Ý 2 Nhập danh sách giáo viên xong chưa in ra luôn
+    - Ý 2 Trình độ trọn 1 trong các option (Trình độ bao gồm: GS-TS, PGS-TS, Giảng viên chính, Thạc sỹ.)
+
+    - Tối ưu lại code
+
+
+

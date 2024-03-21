@@ -1,10 +1,5 @@
 package Day2;
 
-import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
-
-import java.sql.Struct;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class LibraryManagement {

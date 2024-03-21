@@ -13,12 +13,16 @@ public class LibraryManagement {
     private Book[] books;
     private int[] borrowedBookCounts; // the number of borrowed books for each reader
     private int[][] borrowedBooks; // store the list of bookIds that each reader has borrowed
+    private int bookCnt;
+    private int readerCnt;
 
-    public LibraryManagement(Reader[] readers, Book[] books) {
+    public LibraryManagement(Reader[] readers, Book[] books, int readerCnt, int bookCnt) {
         this.readers = readers;
         this.books = books;
         this.borrowedBookCounts = new int[MAX_BORROWED_BOOKS_PER_READER * MAX_BORROWED_COPIES_PER_BOOK + 5];
-        this.borrowedBooks = new int[readers.length + 5][MAX_BORROWED_BOOKS_PER_READER * MAX_BORROWED_COPIES_PER_BOOK + 5];
+        this.borrowedBooks = new int[readerCnt + 5][MAX_BORROWED_BOOKS_PER_READER * MAX_BORROWED_COPIES_PER_BOOK + 5];
+        this.bookCnt = bookCnt;
+        this.readerCnt = readerCnt;
     }
 
     public static Book inputBooks(int bookId) {
@@ -70,17 +74,17 @@ public class LibraryManagement {
 //     Lập bảng quản lý mượn sách cho từng bạn đọc
     public void borrowBooks() {
         Scanner scanner = new Scanner(System.in);
-        for (int i = 0; i < readers.length; i++) {
+        for (int i = 0; i < readerCnt; i++) {
             System.out.println("input borrowing information for readers " + readers[i].getName() + ":");
             int count = 0;
-            int[] cntTm = new int[books.length + 1]; // The number of books borrowed per book/individual
+            int[] cntTm = new int[bookCnt + 1]; // The number of books borrowed per book/individual
             while (count < MAX_BORROWED_BOOKS_PER_READER) {
                 System.out.print("enter the bookId you want to borrow(enter 0 to finish): ");
                 String bookId = scanner.nextLine();
                 if(bookId.equals("0")) break;
                 boolean check = false;
-                for(Book b: books){
-                    if(b.getBookId().equals(bookId)){
+                for(int j = 0; j < bookCnt; j++){
+                    if(books[j].getBookId().equals(bookId)){
                         check = true;
                         break;
                     }
@@ -108,13 +112,13 @@ public class LibraryManagement {
 
     // Hiển thị bảng quản lý mượn sách
     public void displayBorrowRecords() {
-        for (int i = 0; i < readers.length; i++) {
+        for (int i = 0; i < readerCnt; i++) {
             System.out.println("reader: " + readers[i].getName());
             System.out.println("borrowed books:");
 
             int readerId = Integer.parseInt(readers[i].getReaderId());
 
-            int[] c = new int[books.length + 5];
+            int[] c = new int[bookCnt + 5];
 
             for (int j = 0; j < borrowedBookCounts[readerId]; j++) {
                 int bookId = borrowedBooks[readerId][j];
@@ -131,17 +135,17 @@ public class LibraryManagement {
     }
 
     public Book findBookById(int bookId){
-        for(Book b : books){
-            if(bookId == Integer.parseInt(b.getBookId())){
-                return b;
+        for(int i = 0; i < bookCnt; i++){
+            if(bookId == Integer.parseInt(books[i].getBookId())){
+                return books[i];
             }
         }
         return null;
     }
 
     public void sortReaderByName(){
-        for(int i = 0; i < readers.length - 1; i++){
-            for(int j = i + 1; j < readers.length; j++){
+        for(int i = 0; i < readerCnt - 1; i++){
+            for(int j = i + 1; j < readerCnt; j++){
                 if(readers[i].getName().compareTo(readers[j].getName()) > 0){
                     Reader tmp = readers[i];
                     readers[i] = readers[j];
@@ -149,15 +153,15 @@ public class LibraryManagement {
                 }
             }
         }
-        for(Reader r : readers){
-            System.out.println(r);
+        for(int i = 0; i < readerCnt; i++){
+            System.out.println(readers[i]);
         }
         System.out.println("--------------------");
     }
     public void sortByBorrowedBookCounts(){
-        for(int i = 0; i < readers.length - 1; i++){
+        for(int i = 0; i < readerCnt - 1; i++){
             int readerIdI = Integer.parseInt(readers[i].getReaderId());
-            for(int j = i + 1; j < readers.length; j++){
+            for(int j = i + 1; j < readerCnt; j++){
                 int readerIdJ = Integer.parseInt(readers[j].getReaderId());
                 if(borrowedBookCounts[readerIdI] > borrowedBookCounts[readerIdJ]){
                     Reader tmp = readers[i];
@@ -166,21 +170,21 @@ public class LibraryManagement {
                 }
             }
         }
-        for(Reader r : readers){
-            System.out.println(r);
+        for(int i = 0; i < readerCnt; i++){
+            System.out.println(readers[i]);
         }
     }
     public void findBorrowRecordsByReaderName(String name){
         boolean check = true;
-        for(Reader r : readers){
-            if(r.getName().equals(name)){
+        for(int i = 0;i < readerCnt; i++){
+            if(readers[i].getName().equals(name)){
                 check = false;
-                System.out.println("reader: " + r.getName());
+                System.out.println("reader: " + readers[i].getName());
                 System.out.println("borrowed books:");
 
-                int readerId = Integer.parseInt(r.getReaderId());
+                int readerId = Integer.parseInt(readers[i].getReaderId());
 
-                int[] c = new int[books.length + 5];
+                int[] c = new int[bookCnt + 5];
 
                 for (int j = 0; j < borrowedBookCounts[readerId]; j++) {
                     int bookId = borrowedBooks[readerId][j];

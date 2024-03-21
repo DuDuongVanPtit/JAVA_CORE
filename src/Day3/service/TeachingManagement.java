@@ -1,4 +1,7 @@
-package Day3;
+package Day3.service;
+
+import Day3.model.Lecturer;
+import Day3.model.Subject;
 
 import java.util.Scanner;
 

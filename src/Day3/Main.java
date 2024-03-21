@@ -1,5 +1,9 @@
 package Day3;
 
+import Day3.model.Lecturer;
+import Day3.model.Subject;
+import Day3.service.TeachingManagement;
+
 import java.util.Scanner;
 
 public class Main {

@@ -1,4 +1,4 @@
-package Day2;
+package Day2.model;
 
 public class Book {
     private String bookId, name, author, major, publicationYear;

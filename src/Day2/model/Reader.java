@@ -10,6 +10,7 @@ public class Reader {
 
     private int[] borrowedBooks;
 
+    private int[] quantityPerBook;
 
     public Reader(String readerId, String name, String address, String phoneNumber, String readerType) {
         this.readerId = readerId;
@@ -18,8 +19,16 @@ public class Reader {
         this.phoneNumber = phoneNumber;
         this.readerType = readerType;
         this.borrowedBooks = new int[10000];
+        this.quantityPerBook = new int[10000];
     }
 
+    public int getQuantityPerBook(int index) {
+        return quantityPerBook[index];
+    }
+
+    public void setQuantityPerBook(int index, int cnt) {
+        this.quantityPerBook[index] = cnt;
+    }
     public int getBorrowedBooks(int index) {
         return borrowedBooks[index];
     }

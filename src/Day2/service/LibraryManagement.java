@@ -26,10 +26,9 @@ public class LibraryManagement {
         Scanner scanner = new Scanner(System.in);
         for (int i = 0; i < Day2.Main.readerCnt; i++) {
             System.out.println("input borrowing information for readers " + readers[i].getName() + ":");
-            int count = 0;
             int[] cntTm = new int[Day2.Main.bookCnt + 1]; // The number of books borrowed per book/individual
-            while (count < MAX_BORROWED_BOOKS_PER_READER) {
-                if(count == 5){
+            while (readers[i].getBorrowBookCnt() <= MAX_BORROWED_BOOKS_PER_READER) {
+                if(readers[i].getBorrowBookCnt() == 5){
                     System.out.println("Reader " + readers[i].getName() +  " have finished 5 times of borrowing books!");
                     break;
                 }
@@ -44,19 +43,26 @@ public class LibraryManagement {
                     }
                 }
                 if(check){
+                    System.out.print("enter the number of book has bookId " + bookId +  " you want to borrow(enter 0 to finish): ");
+                    int bookAmount = scanner.nextInt();
+                    scanner.nextLine();
                     int readerId = Integer.parseInt(readers[i].getReaderId());
-                    if(cntTm[Integer.parseInt(bookId)] < 3){
-//                        borrowedBooks[readerId][count++] = Integer.parseInt(bookId);
-                        readers[i].setBorrowBookCnt(readers[i].getBorrowBookCnt() + 1);
+                    if(readers[i].getQuantityPerBook(Integer.parseInt(bookId)) + bookAmount <= 3 && readers[i].getBorrowBookCnt() + bookAmount <= 5){
+                        readers[i].setBorrowBookCnt(readers[i].getBorrowBookCnt() + bookAmount);
+                        int bId = Integer.parseInt(bookId);
+                        readers[i].setQuantityPerBook(bId, readers[i].getQuantityPerBook(bId) + bookAmount);
                         readers[i].setBorrowedBooks(readers[i].getBorrowBookCnt(), Integer.parseInt(bookId));
-//                        borrowedBookCounts[readerId]++;
-                        cntTm[Integer.parseInt(bookId)]++;
+
+                        cntTm[Integer.parseInt(bookId)] += bookAmount;
+
                         System.out.println("Book borrowed successfully.");
                     }
-                    else{
+                    else if(readers[i].getBorrowBookCnt() + bookAmount > 5){
+                        System.out.println("One person is not allowed to borrow more than 5 books");
+                    }
+                    else if(readers[i].getQuantityPerBook(Integer.parseInt(bookId)) + bookAmount > 3){
                         System.out.println("not allow to borrow 3 books of the same genre!");
                     }
-
                 }
                 else{
                     System.out.println("unable to borrow books, please enter the correct bookId!");
@@ -77,14 +83,14 @@ public class LibraryManagement {
             int[] c = new int[Day2.Main.bookCnt + 5];
 
             for (int j = 0; j < readers[i].getBorrowBookCnt(); j++) {
-//                int bookId = borrowedBooks[readerId][j];
                 int bookId = readers[i].getBorrowedBooks(j + 1);
                 c[bookId]++;
             }
             for(int j = 1; j < c.length; j++){
                 if(c[j] != 0){
                     Book book = findBookById(j);
-                    System.out.println(" - " + book.getName() + " (" + book.getAuthor() + ")" + " x " + c[j]);
+                    System.out.println(" - " + book.getName() + " (" + book.getAuthor() + ")" + " x " +
+                            readers[i].getQuantityPerBook(Integer.parseInt(book.getBookId())));
                 }
             }
             System.out.println("--------------------");
@@ -143,17 +149,16 @@ public class LibraryManagement {
                 int[] c = new int[Day2.Main.bookCnt + 5];
 
                 for (int j = 0; j < readers[i].getBorrowBookCnt(); j++) {
-//                    int bookId = borrowedBooks[readerId][j];
                     int bookId = readers[i].getBorrowedBooks(j + 1);
                     c[bookId]++;
                 }
                 for(int j = 1; j < c.length; j++){
                     if(c[j] != 0){
                         Book book = findBookById(j);
-                        System.out.println(" - " + book.getName() + " (" + book.getAuthor() + ")" + " x " + c[j]);
+                        System.out.println(" - " + book.getName() + " (" + book.getAuthor() + ")" + " x " +
+                                readers[i].getQuantityPerBook(Integer.parseInt(book.getBookId())));
                     }
                 }
-
                 System.out.println("--------------------");
             }
         }

@@ -29,6 +29,10 @@ public class LibraryManagement {
             int count = 0;
             int[] cntTm = new int[Day2.Main.bookCnt + 1]; // The number of books borrowed per book/individual
             while (count < MAX_BORROWED_BOOKS_PER_READER) {
+                if(count == 5){
+                    System.out.println("Reader " + readers[i].getName() +  " have finished 5 times of borrowing books!");
+                    break;
+                }
                 System.out.print("enter the bookId you want to borrow(enter 0 to finish): ");
                 String bookId = scanner.nextLine();
                 if(bookId.equals("0")) break;

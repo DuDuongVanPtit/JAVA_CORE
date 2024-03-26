@@ -84,6 +84,7 @@ public class Book {
                     break;
                 case 4:
                     d = "DTVT";
+                    break;
                 case 5:
                     d = "CNTT";
             }

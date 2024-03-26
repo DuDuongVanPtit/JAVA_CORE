@@ -62,7 +62,7 @@ public class Subject {
         this.feePerHour = feePerHour;
     }
     public static Subject inputSubject(int sbjId, Scanner scanner){
-        System.out.println("input 3 line to add a new lecturer");
+        System.out.println("input 3 line to add a new Subject: ");
         System.out.print("Subject name: ");
         String a = scanner.nextLine();
         System.out.print("Subject total hours: ");
